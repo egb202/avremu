@@ -14,6 +14,6 @@ authors:
 abstract: >-
   Emulator for the ATtiny1626 microcontroller and
   QUTy development board. Developed for support of
-  learning and teaching in CAB202 Microprocessors and
+  learning and teaching in EGB202 Microprocessors and
   Digital Systems.
 license: MIT

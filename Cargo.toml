@@ -2,8 +2,8 @@
 name = "avremu"
 version = "1.1.0"
 authors = ["Mark A. H. Broadmeadow <mark.broadmeadow@qut.edu.au>"]
-description = "Emulator for the ATtiny1626 microcontroller and QUTy development board. Developed for support of learning and teaching in CAB202 Microprocessors and Digital Systems."
-repository = "https://github.com/cab202/avremu"
+description = "Emulator for the ATtiny1626 microcontroller and QUTy development board. Developed for support of learning and teaching in EGB202 Microprocessors and Digital Systems."
+repository = "https://github.com/egb202/avremu"
 license = "MIT"
 publish = false
 edition = "2024"
