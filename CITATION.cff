@@ -11,6 +11,11 @@ authors:
     email: mark.broadmeadow@qut.edu.au
     affiliation: Queensland University of Technology (QUT)
     orcid: 'https://orcid.org/0000-0001-7041-5904'
+  - given-names: Tarang
+    family-names: Janawalkar
+    email: t.janawalkar@qut.edu.au
+    affiliation: Queensland University of Technology (QUT)
+    orcid: 'https://orcid.org/0000-0002-1535-4931'
 abstract: >-
   Emulator for the ATtiny1626 microcontroller and
   QUTy development board. Developed for support of

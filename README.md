@@ -6,6 +6,8 @@ Emulator for the ATtiny1626 microcontroller and [QUTy development board](https:/
 
 Authored by Dr Mark Broadmeadow (mark.broadmeadow@qut.edu.au).
 
+Maintained by Tarang Janawalkar (t.janawalkar@qut.edu.au).
+
 ```
 Usage: avremu.exe [OPTIONS] <FIRMWARE>
 
