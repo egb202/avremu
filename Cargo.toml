@@ -6,7 +6,7 @@ description = "Emulator for the ATtiny1626 microcontroller and QUTy development 
 repository = "https://github.com/cab202/avremu"
 license = "MIT"
 publish = false
-edition = "2021"
+edition = "2024"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

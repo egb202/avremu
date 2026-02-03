@@ -163,7 +163,7 @@ impl MemoryMapped for Usart {
                 }
                 (self.regs[USART_RXDATAH], 0)
             }
-            USART_RXDATAL..=USART_RXPLCTRL => (self.regs[address], 0),
+            USART_TXDATAL..=USART_RXPLCTRL => (self.regs[address], 0),
             _ => (0, 0),
         }
     }

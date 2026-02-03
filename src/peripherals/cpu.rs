@@ -44,12 +44,10 @@ impl MemoryMapped for Cpu {
     }
 
     fn write(&mut self, address: usize, value: u8) -> usize {
-        if let CPU_CCP = address {
-            if value == 0xD8 {
-                self.ccp_ioreg_count = 4;
-                for ccp in &self.ccp_ioreg {
-                    ccp.borrow_mut().ccp(true);
-                }
+        if CPU_CCP == address && value == 0xD8 {
+            self.ccp_ioreg_count = 4;
+            for ccp in &self.ccp_ioreg {
+                ccp.borrow_mut().ccp(true);
             }
         }
         0

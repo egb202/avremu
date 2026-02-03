@@ -35,7 +35,7 @@ impl MemoryMap {
         self.mm.push((offset, dev));
     }
 
-    fn get_dev(&self, address: usize) -> Result<(RefMut<dyn MemoryMapped>, usize), String> {
+    fn get_dev(&self, address: usize) -> Result<(RefMut<'_, dyn MemoryMapped>, usize), String> {
         match self.mm.binary_search_by(|(offset, dev)| {
             if address < *offset {
                 Ordering::Greater

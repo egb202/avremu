@@ -273,7 +273,7 @@ impl Clocked for Spi {
                                     self.state_sck = !self.state_sck;
                                     port.po_out(pins[SPI_PIN_SCK], self.state_sck);
                                 }
-                                if self.subinterval % 2 == 0 {
+                                if self.subinterval.is_multiple_of(2) {
                                     let mosi = self.sr_tx.view_bits::<Lsb0>()[0];
                                     port.po_out(pins[SPI_PIN_MOSI], mosi);
                                     self.sr_tx >>= 1;

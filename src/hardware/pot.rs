@@ -21,7 +21,7 @@ impl Pot {
     }
 
     fn set(&mut self, time: u64, position: f32) {
-        let pos = position.min(1.0).max(0.0);
+        let pos = position.clamp(0.0, 1.0);
 
         if time > 0 {
             println!("[@{:012X}] POT|{}: {:.3}", time, self.name, pos);

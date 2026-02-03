@@ -38,6 +38,7 @@ pub enum DeviceType {
 pub struct Device {
     pub core: Core,
     pub flash: Rc<RefCell<dyn MemoryMapped>>,
+    #[allow(dead_code)]
     pub sram: Rc<RefCell<dyn MemoryMapped>>,
     pub mm: Rc<RefCell<dyn MemoryMapped>>,
     pub ports: Vec<Rc<RefCell<Port>>>,
