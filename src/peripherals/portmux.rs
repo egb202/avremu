@@ -23,7 +23,9 @@ impl MemoryMapped for Portmux {
     fn read(&mut self, address: usize) -> (u8, usize) {
         match address {
             PORTMUX_EVSYSROUTEA..=PORTMUX_TCBROUTEA => {
-                println!("[WARNING] PORTMUX is not implemented in this emulator. Reads of PORTMUX registers will return last written value.");
+                println!(
+                    "[WARNING] PORTMUX is not implemented in this emulator. Reads of PORTMUX registers will return last written value."
+                );
                 (self.regs[address], 0)
             }
             _ => (0, 0),
@@ -33,7 +35,9 @@ impl MemoryMapped for Portmux {
     fn write(&mut self, address: usize, value: u8) -> usize {
         if let PORTMUX_EVSYSROUTEA..=PORTMUX_TCBROUTEA = address {
             self.regs[address] = value;
-            println!("[WARNING] PORTMUX is not implemented in this emulator. Writes to PORTMUX registers will have no effect.");
+            println!(
+                "[WARNING] PORTMUX is not implemented in this emulator. Writes to PORTMUX registers will have no effect."
+            );
         }
         0
     }

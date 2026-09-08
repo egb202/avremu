@@ -6,6 +6,9 @@ use super::memory::MemoryMapped;
 
 use crate::cores::InterruptHandler;
 use crate::hardware::Hardware;
+use crate::peripherals::ClockSource;
+use crate::peripherals::Clocked;
+use crate::peripherals::InterruptSource;
 use crate::peripherals::adc::Adc;
 use crate::peripherals::clkctrl::Clkctrl;
 use crate::peripherals::cpu::Cpu;
@@ -17,9 +20,6 @@ use crate::peripherals::stdio::Stdio;
 use crate::peripherals::tca::Tca;
 use crate::peripherals::tcb::Tcb;
 use crate::peripherals::usart::Usart;
-use crate::peripherals::ClockSource;
-use crate::peripherals::Clocked;
-use crate::peripherals::InterruptSource;
 
 use std::cell::RefCell;
 use std::fs::File;
@@ -401,10 +401,8 @@ impl Device {
                 let hex = Reader::new(&s);
                 for r in hex {
                     if let Record::Data { offset, value } = r.unwrap() {
-                        let mut address = usize::from(offset);
-                        for b in value {
+                        for (address, b) in (usize::from(offset)..).zip(value) {
                             self.flash.borrow_mut().write(address, b);
-                            address += 1;
                         }
                     }
                 }

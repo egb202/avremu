@@ -194,7 +194,9 @@ impl MemoryMapped for Usart {
                 }
             }
             USART_TXDATAH => {
-                println!("[WARNING] 9-bit mode is not implemented for USART in this emulator. These bits will be ignored.");
+                println!(
+                    "[WARNING] 9-bit mode is not implemented for USART in this emulator. These bits will be ignored."
+                );
             }
             USART_STATUS => {
                 self.regs[USART_STATUS] &= !value | 0xA5; // Flags cleared by writing 1
@@ -207,7 +209,9 @@ impl MemoryMapped for Usart {
             USART_CTRLA => {
                 self.regs[USART_CTRLA] = value;
                 if (value & 0x0F) != 0 {
-                    println!("[WARNING] LBME, ABEIE and RS485 features are not implemented for USART in this emulator. These bits will be ignored.");
+                    println!(
+                        "[WARNING] LBME, ABEIE and RS485 features are not implemented for USART in this emulator. These bits will be ignored."
+                    );
                 }
             }
             USART_CTRLB => {
@@ -225,36 +229,50 @@ impl MemoryMapped for Usart {
                     self.port.borrow_mut().po_out_clear(self.pins[1]);
                 }
                 if (value & 0x1D) != 0 {
-                    println!("[WARNING] SFDEN, ODME, GENAUTO, LINAUTO and MPCM features are not implemented for USART in this emulator. These bits will be ignored.");
+                    println!(
+                        "[WARNING] SFDEN, ODME, GENAUTO, LINAUTO and MPCM features are not implemented for USART in this emulator. These bits will be ignored."
+                    );
                 }
             }
             USART_CTRLC => {
                 self.regs[USART_CTRLC] = value;
                 if value != 0x03 {
-                    println!("[WARNING] Only asynchronous 8N1 mode is implemented for USART in this emulator. These bits will be ignored.");
+                    println!(
+                        "[WARNING] Only asynchronous 8N1 mode is implemented for USART in this emulator. These bits will be ignored."
+                    );
                 }
             }
             USART_BAUDL..=USART_BAUDH => {
                 self.regs[address] = value;
             }
             USART_CTRLD => {
-                println!("[WARNING] CTRLD features are not implemented for USART in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] CTRLD features are not implemented for USART in this emulator. This register will be ignored."
+                );
                 self.regs[USART_CTRLD] = value;
             }
             USART_DBGCTRL => {
-                println!("[WARNING] DBGCTRL features are not implemented for USART in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] DBGCTRL features are not implemented for USART in this emulator. This register will be ignored."
+                );
                 self.regs[USART_DBGCTRL] = value;
             }
             USART_EVCTRL => {
-                println!("[WARNING] EVCTRL features are not implemented for USART in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] EVCTRL features are not implemented for USART in this emulator. This register will be ignored."
+                );
                 self.regs[USART_EVCTRL] = value;
             }
             USART_TXPLCTRL => {
-                println!("[WARNING] TXPLCTRL features are not implemented for USART in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] TXPLCTRL features are not implemented for USART in this emulator. This register will be ignored."
+                );
                 self.regs[USART_TXPLCTRL] = value;
             }
             USART_RXPLCTRL => {
-                println!("[WARNING] RXPLCTRL features are not implemented for USART in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] RXPLCTRL features are not implemented for USART in this emulator. This register will be ignored."
+                );
                 self.regs[USART_RXPLCTRL] = value;
             }
             _ => {}

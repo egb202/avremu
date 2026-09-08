@@ -9,6 +9,7 @@ use crate::nets::Net;
 use crate::nets::NetState;
 use crate::nets::PinState;
 
+use crate::hardware::Hardware;
 use crate::hardware::display::Display;
 use crate::hardware::ic74hc595::IC74HC595;
 use crate::hardware::led::Led;
@@ -16,7 +17,6 @@ use crate::hardware::pot::Pot;
 use crate::hardware::pushbutton::Pushbutton;
 use crate::hardware::sinkpwm::SinkPwm;
 use crate::hardware::sinkuart::SinkUART;
-use crate::hardware::Hardware;
 
 use crate::events::Events;
 

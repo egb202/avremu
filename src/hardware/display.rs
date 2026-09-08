@@ -136,16 +136,12 @@ impl Display {
 
     fn decode_2d(&self) -> String {
         let lhs_first = (self.state.front().unwrap().0 & 0x80) != 0;
-        let lhs;
-        let rhs;
-        if lhs_first {
+        let (lhs, rhs) = if lhs_first {
             // LHS first
-            lhs = self.state.front().unwrap();
-            rhs = self.state.get(1).unwrap();
+            (self.state.front().unwrap(), self.state.get(1).unwrap())
         } else {
-            lhs = self.state.get(1).unwrap();
-            rhs = self.state.front().unwrap();
-        }
+            (self.state.get(1).unwrap(), self.state.front().unwrap())
+        };
 
         let mut disp = String::new();
         disp.push_str(&Self::seg_to_char(lhs.0));

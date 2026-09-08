@@ -16,12 +16,8 @@ impl Event {
 
         let mut events = Vec::new();
 
-        if file_events.is_err() {
-            println!(
-                "[EVENTS] Couldn't open {}. {}",
-                filename,
-                file_events.unwrap_err()
-            );
+        if let Err(err) = file_events {
+            println!("[EVENTS] Couldn't open {}. {}", filename, err);
             return events;
         }
 

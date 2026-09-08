@@ -301,7 +301,7 @@ impl Clocked for Spi {
                                         self.regs[SPI_INTFLAGS]
                                             .view_bits_mut::<Lsb0>()
                                             .set(7, true); // recieve complete
-                                                           // Buffered, check for data in buffer
+                                        // Buffered, check for data in buffer
                                         if self.has_data_tx {
                                             self.sr_tx = self.data_tx;
                                             if !self.is_lsb_first() {

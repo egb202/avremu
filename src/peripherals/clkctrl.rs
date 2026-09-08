@@ -60,7 +60,9 @@ impl Clkctrl {
             11 => 24,
             12 => 48,
             _ => {
-                println!("[WARNING] Invalid main prescaler specified. Write to MCLKCTRLB will be ignored.");
+                println!(
+                    "[WARNING] Invalid main prescaler specified. Write to MCLKCTRLB will be ignored."
+                );
                 return;
             }
         };
@@ -80,7 +82,9 @@ impl MemoryMapped for Clkctrl {
 
     fn read(&mut self, address: usize) -> (u8, usize) {
         if let CLKCTRL_MCLKSTATUS..=CLKCTRL_XOSC32KCTRLA = address {
-            println!("[WARNING] CLKCTRL MCLKSTATUS..XOSC32KXTRLA registers are not implemented in this emulator. Reads will return 0.")
+            println!(
+                "[WARNING] CLKCTRL MCLKSTATUS..XOSC32KXTRLA registers are not implemented in this emulator. Reads will return 0."
+            )
         }
         (self.regs[address], 0)
     }
@@ -98,12 +102,16 @@ impl MemoryMapped for Clkctrl {
                         ),
                         3 => {
                             self.update_clock();
-                            println!("[WARNING] EXTCLK is set to 8 MHz in this emulator which may not be consistent with hardware.")
+                            println!(
+                                "[WARNING] EXTCLK is set to 8 MHz in this emulator which may not be consistent with hardware."
+                            )
                         }
                         _ => {}
                     }
                     if value & 0x80 != 0 {
-                        println!("[WARNING] CLKOUT feature is not implemented in this emulator. This bit will be ignored.");
+                        println!(
+                            "[WARNING] CLKOUT feature is not implemented in this emulator. This bit will be ignored."
+                        );
                     }
                 }
             }
@@ -119,7 +127,9 @@ impl MemoryMapped for Clkctrl {
                 }
             }
             CLKCTRL_MCLKSTATUS..=CLKCTRL_XOSC32KCTRLA => {
-                println!("[WARNING] CLKCTRL MCLKSTATUS..XOSC32KXTRLA registers are not implemented in this emulator. Writes will be ignored.");
+                println!(
+                    "[WARNING] CLKCTRL MCLKSTATUS..XOSC32KXTRLA registers are not implemented in this emulator. Writes will be ignored."
+                );
             }
             _ => {}
         }

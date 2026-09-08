@@ -53,7 +53,9 @@ impl MemoryMapped for Cpuint {
     }
 
     fn write(&mut self, _address: usize, _value: u8) -> usize {
-        println!("[WARNING] Configuration of CPUINT is not currently supported. Writes to these registers are ignored.");
+        println!(
+            "[WARNING] Configuration of CPUINT is not currently supported. Writes to these registers are ignored."
+        );
         0
     }
 }

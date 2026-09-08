@@ -93,17 +93,23 @@ impl MemoryMapped for Tcb {
                     0x00 => TCB_CLKSEL::DIV1,
                     0x01 => TCB_CLKSEL::DIV2,
                     0x02 => {
-                        println!("[WARNING] Clock selection TCA0 is not implemented for TCB in this emulator.");
+                        println!(
+                            "[WARNING] Clock selection TCA0 is not implemented for TCB in this emulator."
+                        );
                         TCB_CLKSEL::TCA0
                     }
                     0x07 => {
-                        println!("[WARNING] Clock selection EVENT is not implemented for TCB in this emulator.");
+                        println!(
+                            "[WARNING] Clock selection EVENT is not implemented for TCB in this emulator."
+                        );
                         TCB_CLKSEL::EVENT
                     }
                     _ => TCB_CLKSEL::RESERVED,
                 };
                 if value & 0x70 != 0 {
-                    println!("[WARNING] RUNSTDBY/CASCADE/SYNCUPD features are not implemented for TCB in this emulator. These bits will be ignored.");
+                    println!(
+                        "[WARNING] RUNSTDBY/CASCADE/SYNCUPD features are not implemented for TCB in this emulator. These bits will be ignored."
+                    );
                 }
             }
             TCB_CTRLB => {
@@ -151,15 +157,21 @@ impl MemoryMapped for Tcb {
                     _ => TCB_MODE::PWM8,
                 };
                 if value & 0x70 != 0 {
-                    println!("[WARNING] ASYNC/CCMPINIT/CCMPEN features are not implemented for TCB in this emulator. These bits will be ignored.");
+                    println!(
+                        "[WARNING] ASYNC/CCMPINIT/CCMPEN features are not implemented for TCB in this emulator. These bits will be ignored."
+                    );
                 }
             }
             TCB_EVCTRL => {
-                println!("[WARNING] EVECTRL features are not implemented for TCB in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] EVECTRL features are not implemented for TCB in this emulator. This register will be ignored."
+                );
                 self.regs[TCB_EVCTRL] = value;
             }
             TCB_DBGCTRL => {
-                println!("[WARNING] DBGCTRL features are not implemented for TCB in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] DBGCTRL features are not implemented for TCB in this emulator. This register will be ignored."
+                );
                 self.regs[TCB_DBGCTRL] = value;
             }
             TCB_INTFLAGS => self.regs[TCB_INTFLAGS] &= !value,

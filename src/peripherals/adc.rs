@@ -187,7 +187,9 @@ impl MemoryMapped for Adc {
                 self.regs[ADC_CTRLA] = value;
                 self.enabled = (value & 0x01) != 0;
                 if value & 0xFE != 0 {
-                    println!("[WARNING] RUNSTDBY/LOWLAT features are not implemented for ADC in this emulator. These bits will be ignored.");
+                    println!(
+                        "[WARNING] RUNSTDBY/LOWLAT features are not implemented for ADC in this emulator. These bits will be ignored."
+                    );
                 }
             }
             ADC_CTRLB => {
@@ -219,18 +221,24 @@ impl MemoryMapped for Adc {
                 }
             }
             ADC_CTRLD => {
-                println!("[WARNING] CTRLD features are not implemented for ADC in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] CTRLD features are not implemented for ADC in this emulator. This register will be ignored."
+                );
                 self.regs[ADC_CTRLD] = value;
             }
             ADC_INTCTRL => {
                 if value > 1 {
-                    println!("[WARNING] Only RESRDY is implemented for ADC in this emulator. No other interrupt flags will be set.");
+                    println!(
+                        "[WARNING] Only RESRDY is implemented for ADC in this emulator. No other interrupt flags will be set."
+                    );
                 }
                 self.regs[ADC_INTCTRL] = value;
             }
             ADC_INTFLAGS => self.regs[ADC_INTFLAGS] &= !value,
             ADC_DBGCTRL => {
-                println!("[WARNING] DBGCTRL features are not implemented for ADC in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] DBGCTRL features are not implemented for ADC in this emulator. This register will be ignored."
+                );
                 self.regs[ADC_DBGCTRL] = value;
             }
             ADC_CTRLE => {
@@ -239,13 +247,17 @@ impl MemoryMapped for Adc {
             ADC_CTRLF => {
                 self.regs[ADC_CTRLF] = value;
                 if value & 0x0F != 0 {
-                    println!("[WARNING] SAMPNUM features are not implemented for ADC in this emulator. These bits will be ignored.");
+                    println!(
+                        "[WARNING] SAMPNUM features are not implemented for ADC in this emulator. These bits will be ignored."
+                    );
                 }
             }
             ADC_COMMAND => {
                 self.regs[ADC_COMMAND] = value & 0x7F;
                 if value & 0x80 != 0 {
-                    println!("[WARNING] DIFF feature is not implemented for ADC in this emulator. This bit will be ignored.");
+                    println!(
+                        "[WARNING] DIFF feature is not implemented for ADC in this emulator. This bit will be ignored."
+                    );
                 }
                 match value & 0x07 {
                     0x00 => self.busy = false,
@@ -259,7 +271,9 @@ impl MemoryMapped for Adc {
                     }
                     _ => {
                         self.regs[ADC_COMMAND] &= 0xF8;
-                        println!("[WARNING] Only IMMEDIATE start trigger is implemented for ADC in this emulator. Write to START field will be ignored.");
+                        println!(
+                            "[WARNING] Only IMMEDIATE start trigger is implemented for ADC in this emulator. Write to START field will be ignored."
+                        );
                     }
                 }
                 match (value >> 4) & 0x07 {
@@ -267,12 +281,16 @@ impl MemoryMapped for Adc {
                     0x01 => self.mode = ADC_MODE::SINGLE_12BIT,
                     _ => {
                         self.mode = ADC_MODE::RESERVED;
-                        println!("[WARNING] Accumulation modes are not implemented for ADC in this emulator. ADC will not be functional.");
+                        println!(
+                            "[WARNING] Accumulation modes are not implemented for ADC in this emulator. ADC will not be functional."
+                        );
                     }
                 }
             }
             ADC_PGACTRL => {
-                println!("[WARNING] PGACTRL features are not implemented for ADC in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] PGACTRL features are not implemented for ADC in this emulator. This register will be ignored."
+                );
                 self.regs[ADC_PGACTRL] = value;
             }
             ADC_MUXPOS => {
@@ -284,13 +302,17 @@ impl MemoryMapped for Adc {
                     0..=16 => self.muxpos = (value & 0x3F) as usize,
                     0x30 => self.muxpos = 0,
                     _ => {
-                        println!("[WARNING] Only AIN1..15 and GND MUXPOS selections are implemented for ADC. MUXPOS will revert to GND.");
+                        println!(
+                            "[WARNING] Only AIN1..15 and GND MUXPOS selections are implemented for ADC. MUXPOS will revert to GND."
+                        );
                         self.muxpos = 0;
                     }
                 }
             }
             ADC_MUXNEG => {
-                println!("[WARNING] MUXNEG features are not implemented for ADC in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] MUXNEG features are not implemented for ADC in this emulator. This register will be ignored."
+                );
                 self.regs[ADC_MUXNEG] = value;
                 // VIA field is common
                 self.regs[ADC_MUXPOS] &= 0x3F;

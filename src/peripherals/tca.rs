@@ -173,7 +173,9 @@ impl MemoryMapped for Tca {
                     _ => TCA_CLKSEL::DIV1,
                 };
                 if value & 0x80 != 0 {
-                    println!("[WARNING] RUNSTDBY feature is not implemented for TCA in this emulator. This bit will be ignored.");
+                    println!(
+                        "[WARNING] RUNSTDBY feature is not implemented for TCA in this emulator. This bit will be ignored."
+                    );
                 }
             }
             TCA_CTRLB => {
@@ -227,27 +229,37 @@ impl MemoryMapped for Tca {
                         TCA_MODE::DSBOTTOM
                     }
                     _ => {
-                        println!("[WARNING] Invalid mode specified for TCA. TCA will default to NORMAL mode.");
+                        println!(
+                            "[WARNING] Invalid mode specified for TCA. TCA will default to NORMAL mode."
+                        );
                         TCA_MODE::NORMAL
                     }
                 };
                 if value & 0x08 != 0 {
-                    println!("[WARNING] ALUPD features are not implemented for TCA in this emulator. These bits will be ignored.");
+                    println!(
+                        "[WARNING] ALUPD features are not implemented for TCA in this emulator. These bits will be ignored."
+                    );
                 }
             }
             TCA_CTRLC => {
                 self.regs[TCA_CTRLC] = value;
             }
             TCA_CTRLD => {
-                println!("[WARNING] CTRLD features are not implemented for TCA in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] CTRLD features are not implemented for TCA in this emulator. This register will be ignored."
+                );
                 self.regs[TCA_CTRLD] = value;
             }
             TCA_CTRLESET => {
-                println!("[WARNING] CTRLE features are not implemented for TCA in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] CTRLE features are not implemented for TCA in this emulator. This register will be ignored."
+                );
                 self.regs[TCA_CTRLECLR] |= value;
             }
             TCA_CTRLECLR => {
-                println!("[WARNING] CTRLE features are not implemented for TCA in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] CTRLE features are not implemented for TCA in this emulator. This register will be ignored."
+                );
                 self.regs[TCA_CTRLECLR] &= !value;
             }
             TCA_CTRLFSET => {
@@ -257,13 +269,17 @@ impl MemoryMapped for Tca {
                 self.regs[TCA_CTRLFCLR] &= !value;
             }
             TCA_EVCTRL => {
-                println!("[WARNING] EVECTRL features are not implemented for TCA in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] EVECTRL features are not implemented for TCA in this emulator. This register will be ignored."
+                );
                 self.regs[TCA_EVCTRL] = value;
             }
             TCA_INTFLAGS => self.regs[TCA_INTFLAGS] &= !value,
             TCA_INTCTRL => self.regs[TCA_INTCTRL] = value,
             TCA_DBGCTRL => {
-                println!("[WARNING] DBGCTRL features are not implemented for TCA in this emulator. This register will be ignored.");
+                println!(
+                    "[WARNING] DBGCTRL features are not implemented for TCA in this emulator. This register will be ignored."
+                );
                 self.regs[TCA_DBGCTRL] = value;
             }
             TCA_CNTL => self.regs[TCA_TEMP] = value,
