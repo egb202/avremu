@@ -46,6 +46,10 @@ pub struct Cli {
     #[arg(short = 'o', long)]
     dump_stdout: bool,
 
+    /// Log every display state change as a raw byte, without decoding it
+    #[arg(short = 'D', long)]
+    display_raw: bool,
+
     /// Output all net state transitions
     #[arg(short = 'n', long)]
     net_all: bool,

@@ -2,6 +2,7 @@ use std::cell::RefCell;
 use std::{collections::VecDeque, rc::Rc};
 
 use super::Hardware;
+use crate::CLI;
 use crate::nets::{Net, NetState, PinState};
 
 pub struct Display {
@@ -224,6 +225,15 @@ impl Hardware for Display {
 
         let mut print_state = false;
         if state != state_new {
+            if CLI.display_raw {
+                self.state.push_front((state_new, time));
+                self.state.pop_back();
+                if time > 0 {
+                    println!("[@{:012X}] DISP|{}: 0x{:02X}", time, self.name, state_new);
+                }
+                return;
+            }
+
             if (state & state_new) & 0x7F != 0x7F {
                 print_state = true;
             }
